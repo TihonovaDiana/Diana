@@ -14,7 +14,6 @@ int main()
 		cout << "error" << endl;
 		system("pause");
 		return 0;
-		;
 	}
 	if (a == 1)
 		cout << "x*x";
