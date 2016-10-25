@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+	cout << "enter integer number" << endl << "n = ";
+	cin >> n;
+	int i, remainder;
+	for (i = 2; i < sqrt(n); i++)
+	{
+		remainder = n%i;
+		if (remainder == 0)
+		{
+			cout << "not elementar number ";
+			system("pause");
+			return 0;
+		}
+	}
+	if (n == 1)
+	{
+		cout << "neither elementar nor not elementar" << endl;
+		system("pause");
+		return 0;
+	}
+	cout << "elementar" << endl;
+	system("pause");
+	return 0;
+}
