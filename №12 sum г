@@ -1,0 +1,19 @@
+#include <iostream> 
+using namespace std;
+int main()
+{
+	double sum = 0;
+	int n;
+	cout << "n=";
+	cin >> n;
+	int i = 1;
+	double p = 1;
+	for (   ; i <= n; p = -p, i++)
+	{
+		p = 1. / i / (i + 1);
+		sum = sum + p;
+	}
+	cout << "sum ("<<i<<") =" << sum << endl;
+	system("pause");
+	return 0;
+}
