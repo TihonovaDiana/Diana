@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	while (true)
+	{
+		int a, b, c, n, i;
+		for (i = 100; i < 1000; i++)
+		{
+			n = i;
+			a = n % 10;
+			n = n / 10;
+			b = n % 10;
+			n = n / 10;
+			c = n;
+			if (i==a*a*a+b*b*b+c*c*c)
+			cout << i << endl;
+		}
+		short ok;
+		cout << "if exit enter 0" << endl;
+		cin >> ok;
+		if (ok == 0)
+		{
+			system("pause");
+			return 0;
+		}
+	}
+}
