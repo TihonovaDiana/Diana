@@ -1,0 +1,17 @@
+#include <iostream> 
+using namespace std;
+int main()
+{
+	double sum = 0;
+	int n;
+	cout << "n=";
+	cin >> n;
+	int i = 1;
+	for (; i <= n; i++)
+	{
+		sum = sum + 1. / i;
+	}
+	cout << "sum ("<<i<<") =" << sum << endl;
+	system("pause");
+	return 0;
+}
