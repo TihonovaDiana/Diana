@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	long long n;
+	cout << "enter number" << endl << "n = ";
+	cin >> n;
+	long long m = n, s = n;
+	int min = n % 10, max = n % 10, kol = 1, remainder;
+	n = n / 10;
+	while (n)
+	{
+		remainder = n % 10;
+		if (remainder < min)
+			min = remainder;
+		if (remainder > max)
+			max = remainder;
+		n = n / 10;
+		kol++;
+	}
+	int count = 0;
+	for (int i = 0; i <= 9; i++)
+	{
+		m = s;
+		count = 0;
+		while (m)
+		{
+			remainder = m % 10;
+			if (remainder == i)
+				count++;
+			m = m / 10;
+		}
+		cout << "there are " << count << " digits of " << i << endl;
+	}
+	cout << min << endl << max << endl;
+	system("pause");
+	return 0;
+}
