@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	while (true)
+	{
+		long long number, newnumber=0;
+		cout << "enter number" << endl << "number = ";
+		cin >> number;
+		int a, b, i=0, remainder;
+		cout << "enter numeral" << endl;
+		cin >> a >> b;
+		while (number)
+		{
+			remainder = number % 10;
+			if (a == remainder)
+				remainder = b;
+				newnumber = newnumber + remainder*pow(10, i);
+				i++;
+				number = number / 10;
+		}
+		cout << newnumber << endl;
+		short ok;
+		cout << "if exit enter 0" << endl;
+		cin >> ok;
+		if (ok == 0)
+		{
+			system("pause");
+			return 0;
+		}
+	}
+
+}
