@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+bool IsSimpleNumber(int);
+
+int main ()
+{
+	int n, i=2;
+	cin >> n;
+	while (i < n)
+	{
+		if (IsSimpleNumber(i))
+			cout << i << endl;
+		i++;
+	}
+	system("pause");
+	return 0;
+}
+
+bool IsSimpleNumber(int y)
+{
+	int i, remainder;
+	for (i = 2; i <= sqrt(y); i++)
+	{
+		remainder = y%i;
+		if (remainder == 0)
+			return false;
+	}
+	return true;
+}
