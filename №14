@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	long long n;
+	cout << "enter number"  << endl << "n = ";
+	cin >> n;
+	int prev = n%10, next;
+	n = n / 10;
+	bool eq = false, less = false, gr = false;
+	while (n)
+	{
+		next = n % 10;
+		if (prev < next)
+			less = true;
+		else if (prev > next)
+		    gr = true;
+		else
+			eq = true;
+			n = n / 10;
+			prev = next;
+	}
+	if (eq && !less && !gr)
+		cout << "1 mon" << endl;
+	else if (!eq && less && !gr)
+		cout << "2 decreasing" << endl;
+	else if (!eq && !less && gr)
+		cout << "3 increasing" << endl;
+	else if (eq && less && !gr)
+		cout << "4 non-strictly decreasing" << endl;
+	else if (eq && !less && gr)
+		cout << "5 weakly increasing" << endl;
+	else
+		cout << "6 no" << endl;
+	system("pause");
+	return 0;
+}
