@@ -1,0 +1,50 @@
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+
+long long ReplaceNumber(long long, short, short);
+
+int main()
+{
+	while (true)
+	{
+		long long number;
+		short digit, numeral;
+		cout << "enter number" << endl << "number = ";
+		cin >> number;
+		cout << "enter digit that you want to replace" << endl << "digit = ";
+		cin >> digit;
+		cout << "enter numeral to which you want to replace " << endl << "numeral = ";
+		cin >> numeral;
+		long long newnumber = ReplaceNumber(number, digit, numeral);
+		cout << number << " -> " << newnumber << endl;
+		short ok;
+		cout << "if exit enter 0" << endl;
+		cin >> ok;
+		if (ok == 0)
+		{
+			system("pause");
+			return 0;
+		}
+	}
+}
+
+long long ReplaceNumber(long long number, short digit, short numeral)
+
+{
+	int remainder, i = 0;
+	long long newnumber=0;
+	while (number)
+	{
+		remainder = number % 10;
+		if (digit == remainder)
+			remainder = numeral;
+		newnumber = newnumber + remainder*pow(10, i);
+		i++;
+		number = number / 10;
+	}
+	return newnumber;
+}
+
+
