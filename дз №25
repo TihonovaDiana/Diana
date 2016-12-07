@@ -1,0 +1,48 @@
+-#include <iostream>
+
+using namespace std;
+void RandomArray(int a[], int n);
+void MinMax(int a[], int n, int&min, int&max);
+void DisplayArray(int a[], int n);
+
+const int N = 100;
+
+int main()
+{
+	int a[N], n, min=9999999, max=-1;
+	while (true)
+	{
+		cout << "Enter n > 0 and n <= N " << endl << "n = ";
+		cin >> n;
+		if (n > 0 || n <= N)
+			break;
+	}
+	RandomArray(a, n);
+	MinMax(a, n, min, max);
+	DisplayArray(a, n);
+	cout << "min=" << min << endl<<"max=" << max << endl;
+		system("pause");
+}
+
+void RandomArray(int a[], int n)
+{
+	for (int i = 0; i <= n; i++)
+		a[i] = rand() % 100;
+}
+
+void MinMax(int a[], int n, int&min, int&max)
+{
+	for (int i = 0; i <= n; i++)
+	{
+		if (a[i] <= min)
+			min = a[i];
+		if (a[i] > max)
+			max = a[i];
+	}
+}
+
+void DisplayArray(int a[], int n)
+{
+	for (int i = 0; i <= n; i++)
+		cout << a[i] << ", ";
+}
