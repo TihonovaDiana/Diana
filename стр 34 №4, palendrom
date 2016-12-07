@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+void Palindrom(long long number);
+
+int main()
+{
+	long long number;
+	cout << "enter number" << endl;
+	cin >> number;
+	Palindrom( number);
+	system("pause");
+	return 0;
+}
+
+void Palindrom(long long number)
+{
+	for (long long i=11; i <= number; i++)
+	{
+		long long copy = i,j=i, newnumber=0;
+		short remainder;
+		while (j)
+		{
+			remainder = j % 10;
+			newnumber = newnumber * 10 + remainder;
+				j = j / 10;
+				
+		}
+		if (copy == newnumber) cout << copy << endl;
+		
+	}
+}
