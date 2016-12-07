@@ -1,0 +1,89 @@
+#include <iostream>
+
+using namespace std;
+
+void RandomArray(int a[], int n);
+void DisplayArray(int a[], int n);
+int SumPos(int a[], int n);
+int SumNeg(int a[], int n);
+int KolPos(int a[], int n);
+int KolNeg(int a[], int n);
+
+const int N = 100;
+int main()
+{
+	int a[N];
+	int n = 10;
+	while (true)
+	{
+		cout << "enter n > 0 and n <" << N << endl;
+		cin >> n;
+		if (n > 0 || n <N)
+			break;
+	}
+	RandomArray(a, n);
+	DisplayArray(a, n);
+	cout << endl << SumPos(a, n) << endl;
+	cout << SumNeg(a, n) << endl;
+	cout << KolPos(a, n) << endl;
+	cout << KolNeg(a, n) << endl;
+	system("pause");
+}
+
+void RandomArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		a[i] = rand() % 100 -50;
+}
+
+void DisplayArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << " ";
+	}
+}
+
+int SumPos(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+			sum = sum + a[i];
+	}
+	return sum;
+}
+
+int SumNeg(int a[], int n)
+{
+	int sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+			sum = sum + a[i];
+	}
+	return sum;
+}
+
+int KolPos(int a[], int n)
+{
+	int kol = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+			kol++;
+	}
+	return kol;
+}
+
+int KolNeg(int a[], int n)
+{
+	int kol = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+			kol++;
+	}
+	return kol;
+}
