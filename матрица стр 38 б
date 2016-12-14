@@ -1,0 +1,41 @@
+#include <iostream>
+#include "Header.h" 
+
+using namespace std;
+
+int main()
+{
+	int matrix[N][N] = { { 0 } }, n;
+	cout << "Enter n > 0 and n<=N" << endl << "n = ";
+	cin >> n;
+	for (int i=0; i<n/2; i++)
+	{
+		matrix[i][i] = 1;
+		matrix[i][n - i - 1] = 1;
+		for (int j = n - 1; j > i; j--)
+		{
+			if (j > (n - i - 1))
+				continue;
+			else
+				matrix[i][j] = 1;
+		}
+	}
+	for (int i = n-1; i>(n/2 - 1); i--) 
+	{
+		matrix[i][i] = 1;
+		matrix[i][n - i - 1] = 1;
+	}
+
+	DisplayMatrix(matrix, n, n);
+	system("pause");
+	return 0;
+}
+
+
+//for (int j = n - 1, k = n - 1; j >= n - k - 1, k >= 0; j--, k--)
+//{
+	//if (j>k)
+		//continue;
+	//else
+		//matrix[i][j] = 1;
+//}
