@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+const int n = 27, N = 10;
+void FuAlf(char Alf[]);
+void FuNewAlf(char Alf[]);
+void NumbersToLetters(char Alf[], int m[]);
+
+int main()
+{
+	int m[N] = { 15, 22, 26, 9, 13, 29, 24, 28, 28, 27 };
+	char Alf[30] = {};
+	Alf[27] = '!';
+	Alf[28] = '+';
+	Alf[29] = ' ';
+	FuAlf(Alf);
+	cout << endl;
+	FuNewAlf(Alf);
+	cout << endl;
+	NumbersToLetters(Alf, m);
+	system("pause");
+	return 0;
+}
+
+void FuAlf(char Alf[])
+{
+	for (char k = 'a'; k <= 'z'; k++)
+	{
+		cout << k << " ";
+	}
+}
+
+void FuNewAlf(char Alf[])
+{
+	for (int i = 1, l='z'; l>='a'; i++, l--)
+	{
+		Alf[i] = l;
+		cout << Alf[i] << " ";
+	}
+}
+
+void NumbersToLetters(char Alf[], int m[])
+{
+	for (int k = 0; k < N; k++)
+	{
+		if (m[k] < 0 || m[k]>29)
+		{
+			cout << "error";
+			return;
+		}
+		cout << Alf[m[k]];
+	}
+}
