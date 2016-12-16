@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	long long numb, copy, newnumb;
+	cout << "Enter number" << endl << "number = ";
+	cin >> numb;
+	copy = numb;
+	newnumb = numb;
+	int rem1, rem2;
+	for (int i = 0; numb > 0; i++)
+	{
+		rem1 = numb % 10;
+		numb = numb / 10;
+		rem2 = numb % 10;
+		if (rem2 < rem1)
+			continue;
+		if (rem2 > rem1)
+		{
+			int a = (rem2 - rem1)*(int)pow(10, i+1);
+			int aa = (rem2 - rem1)*(int)pow(10, i);
+			newnumb = copy - a + aa;
+			cout << newnumb << endl;
+			system("PAUSE");
+			return 0;
+		}
+	}
+		
+	cout << "-1";
+	system("pause");
+	return 0;
+}
