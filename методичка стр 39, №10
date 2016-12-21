@@ -1,0 +1,56 @@
+#include <iostream>
+#include<iomanip>
+
+using namespace std;
+const int N = 100, L = 100;
+void RandomMatrix(int matrix[N][L], int n, int l);
+void DisplayMatrix(int matrix[N][L], int n, int l);
+void ChangedLines(int matrix[N][L], int n, int l);
+
+int main()
+{
+	int matrix[N][L] = {}, n, l;
+	cout << "Enter n > 0 and n<=N" << endl << "n = ";
+	cin >> n;
+	cout << "Enter l > 0 and n<=L" << endl << "l = ";
+	cin >> l;
+	RandomMatrix(matrix, n, l);
+	DisplayMatrix(matrix, n, l);
+	cout << endl;
+	ChangedLines(matrix, n, l);
+	DisplayMatrix(matrix, n, l);
+	//cout << ChangedLines(matrix, n, l);
+	system("paUse");
+}
+
+void RandomMatrix(int matrix[N][L], int n, int l)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < l; j++)
+			matrix[i][j] = rand() % 100;
+	}
+}
+
+void DisplayMatrix(int matrix[N][L], int n, int l)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < l; j++)
+		{
+			cout<<setw(4) << matrix[i][j] << ", ";
+		}
+		cout << endl;
+	}
+}
+
+void ChangedLines(int matrix[N][L], int n, int l)
+{
+	for (int i = 0; i < n/2; i++)
+	{
+		for (int j = 0; j < l; j++)
+		{
+			swap (matrix[i][j], matrix[n - i - 1][j]);
+		}
+	}
+}
