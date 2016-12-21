@@ -1,0 +1,73 @@
+#include <iostream>
+
+using namespace std;
+
+
+void RandomArray(int a[], int n);
+void DisplayArray(int a[], int n);
+void F1(int a[], int n, bool&gr, bool&eq, bool&les);
+void F2(bool&gr, bool&eq, bool&les);
+
+const int N = 100;
+int main()
+
+{	int a[N];
+	int n;
+	while (true)
+	{
+		cout << "enter n > 0 and n <" << N << endl;
+		cin >> n;
+		if (n > 0 || n <N)
+			break;
+	}
+	RandomArray(a, n);
+	DisplayArray(a, n);
+	bool eq = false, les = false, gr = false;
+	F1(a, n, gr, eq, les);
+	F2(gr, eq, les);
+	system("pause");
+	return 0;
+}
+
+void RandomArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		a[i] = rand() % 100;
+}
+
+
+void DisplayArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << " ";
+	}
+}
+
+
+
+void F1(int a[], int n, bool&gr, bool&eq, bool&les)
+{
+	for (int i=1; i < n; i++)
+	{
+		if (a[i - 1] > a[i])	gr = true;
+		else if (a[i - 1] < a[i])	les = true;
+		else	eq = true;
+	}
+}
+
+void F2(bool&gr, bool&eq, bool&les)
+{
+	if (gr&&les)
+		cout << "1 �������";
+	if (gr&&!les&&eq)
+		cout << "2 �������� ���������";
+	if (!gr&&les&&eq)
+		cout << "3 �������� ������������";
+	if (!gr&&les&&!eq)
+		cout << "4 ������ ������������";
+	if (gr&&!les&&!eq)
+		cout << "5 ������ ���������";
+	if (!gr&&!les&&eq)
+		cout << "6 ����������";
+}
