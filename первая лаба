@@ -1,0 +1,171 @@
+#include <iostream>
+
+using namespace std;
+
+int *AllocatMemory(int n);
+void EnterArray(int *arr, int n);
+void DisplayArray(int *arr, int n);
+int MinArray(int *arr, int n);
+int SizeOfNewArray(int *arr, int n, int min);     //����  ��������, ������� ������������, ���������� ���� ��-��(������ ������ �������)
+int NewArray(int *newArr, int s);
+int FoldElement(int *arr, int n, int min);
+int BinaryNumber(int *newArr, int i);
+void BubbleSor(int *binaryArr, int s);
+void BubbleSort(int *newArr, int s);
+void Swap(int* a, int *b);
+
+int main()
+{
+	int n;
+	cout << "Enter size of array n" << endl << "n = ";  
+	cin >> n;
+	int *arr = AllocatMemory(n);
+	EnterArray(arr, n);
+	cout << endl;
+	DisplayArray(arr, n);
+	cout << endl;
+	int min = MinArray(arr, n);
+	cout << "The minimum element is " << min << endl;
+	int s = SizeOfNewArray(arr, n, min);
+	int *newArr = AllocatMemory(s);
+	for (int i = 0; i < s; i++)
+	{
+		*(newArr + i) = FoldElement(arr, n, min);
+	}
+	cout << endl;
+	DisplayArray(newArr, s);
+	cout << endl;
+	int *binaryArr = AllocatMemory(s);
+	for (int i = 0; i < s; i++)
+	{
+		cout << BinaryNumber(newArr, i);
+	}
+	cout << endl;
+	//BubbleSor(binaryArr, s);
+	BubbleSort(newArr, s);
+	DisplayArray(binaryArr, s);
+	cout << endl;
+	system("pause");
+	return 0;
+}
+
+int *AllocatMemory(int n)
+{
+	int *arr = new int[n];
+	return arr;
+}
+
+void EnterArray(int *arr, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "enter arr[" << i << "] = ";
+		cin >> arr[i];
+	}
+}
+
+void DisplayArray(int *arr, int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << arr[i] << "  ";
+}
+
+int MinArray(int *arr, int n)
+{
+	int min = *(arr);
+	for (int i = 0; i < n; i++)
+	{
+		if (*(arr + i) < min)
+			min = *(arr + i);
+		else
+			continue;
+	}
+	return min;
+}
+
+int SizeOfNewArray(int *arr, int n, int min)
+{
+	int size = 0;
+	for (int i = 0; i < n-1; i++)
+	{
+		if (0 == arr[i] % min)
+			size++;
+	}
+	return size;
+}
+
+int FoldElement(int *arr, int n, int min)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (0 == arr[i] % min)
+		{
+			int a = *(arr + i + 1);
+			for (int j = i; j < n - 1; j++)
+			*(arr + j) = *(arr + j + 1);
+			return a;
+		}
+		else
+			continue;
+	}
+	return 0;
+}
+
+int BinaryNumber(int *newArr, int i)
+{
+	int sum = 1;
+	while (*(newArr+i)!=1)
+	{
+		int rem = *(newArr + i) % 2;
+		if (rem==1)
+		{
+			sum++;
+			*(newArr + i) = *(newArr + i) / 2;
+		}
+		else
+			*(newArr + i) = *(newArr + i) / 2;
+	}
+	cout << "   ";
+	return sum;
+}
+
+void BubbleSor(int *binaryArr, int s)
+{
+	for (int i = 0; i < s-1; i++)
+	{
+		for (int j = 0; j < s-i-1; ++j)
+		{
+			if (*(binaryArr + j) > *(binaryArr + j + 1))
+				Swap((binaryArr + j), (binaryArr + j + 1));
+		}
+	}
+}
+
+void BubbleSort(int *newArr, int s)
+{
+	for (int i = 0; i < s - 1; i++)
+	{
+		for (int j = 0; j < s - i - 1; ++j)
+		{
+			int sum = 1;
+			while (*(newArr + j) != 1)
+			{
+				int rem = *(newArr + j) % 2;
+				if (rem == 1)
+				{
+					sum++;
+					*(newArr + j) = *(newArr + j) / 2;
+				}
+				else
+					*(newArr + j) = *(newArr + j) / 2;
+			}
+		}
+	}
+}
+
+void Swap(int* a, int *b)
+{
+	int *temp = a;
+	a = b;
+	b = temp;
+}
