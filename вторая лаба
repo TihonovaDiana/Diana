@@ -1,0 +1,126 @@
+#include <iostream> 
+#include<math.h>
+
+using namespace std;
+
+double **AllocateMemory(int n);
+void DisplayMatrix(double **matrix, int n);
+void DeleteMemory(double** matrix, int n);
+double **CreateMatrix1(int n, double eps);
+double **CreateMatrix2(int n);
+double Cos(double eps, double x);
+double normaMatix(double** matrix, int n);
+
+int main()
+{
+	int n;
+	cout << "Enter size of matrix: ";
+	cin >> n;
+	if (n <= 0)
+		cout << "Error!";
+	double eps;
+	cout << "Enter accuracy: ";
+	cin >> eps;
+	if (eps < 0 || eps > 1)
+		cout << "Error!";
+	double **matrix1 = CreateMatrix1(n, eps);
+	double **matrix2 = CreateMatrix2(n);
+	cout << "matrix1: " << endl << normaMatix(matrix1, n) << endl;
+	DisplayMatrix(matrix1, n);
+	cout << "matrix2: " << endl << normaMatix(matrix2, n) << endl;
+	DisplayMatrix(matrix2, n);
+	DeleteMemory(matrix1, n);
+	DeleteMemory(matrix2, n);
+	system("pause");
+	return 0;
+}
+
+double **AllocateMemory(int n)
+{
+	double **matrix = new double*[n];
+	for (int i = 0; i < n; i++)
+		matrix[i] = new double[n];
+	return matrix;
+}
+
+void DisplayMatrix(double **matrix, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+			cout << " " << matrix[i][j];
+		cout << endl;
+	}
+}
+
+double **CreateMatrix1(int n, double eps)
+{
+	double** matrix1 = AllocateMemory(n);
+	double y = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			matrix1[i][j] = y;
+			if (i == j)
+				y = (Cos((double)(i + j), eps) + 2 * i - j) / pow((i + j + 1), 2);
+			else
+				y = i - j;
+		}
+	}
+	return matrix1;
+}
+
+double **CreateMatrix2(int n)
+{
+	double** matrix2 = AllocateMemory(n);
+	double y = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			matrix2[i][j] = y;
+			if (i == j)
+				y = (cos((double)(i + j)) + 2 * i - j) / pow((i + j + 1), 2);
+			else
+				y = i - j;
+		}
+	}
+	return matrix2;
+}
+
+double Cos(double eps, double x)
+{
+	double ad = 1, s = 0;
+	int i = 1, p = 1;
+	while (fabs(ad) > eps)
+	{
+		s += p*ad;
+		ad *= (x*1.0 / (i*1.0));
+		i += 2;
+		p *= -1;
+		ad *= x / (i - 1);
+	}
+	return s;
+}
+
+double normaMatix(double** matrix, int n)
+{
+	double maxsum = 0.0, sum = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		sum = 0.0;
+		for (int j = 0; j < n; j++)
+			sum += fabs(matrix[i][j]);
+		if (maxsum < sum)
+			maxsum = sum;
+	}
+	return maxsum;
+}
+
+void DeleteMemory(double** matrix, int n)
+{
+	for (int i = 0; i < n; i++)
+		delete[] matrix[i];
+	delete matrix;
+}
